@@ -8,16 +8,22 @@ public class TileScript : GenerateMap
 	public int value;
 	public string tilename;
 
+	public bool isTriggered;
 
 	// Use this for initialization
 	void Start ()
 	{
-	
+
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	
+		
 	}
+
+
+
+
 }

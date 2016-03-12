@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterMovement : MonoBehaviour
 {
-
+	public GenerateMap genMap;
 
 	public float moveSpeed;
 	public float rotationSpeed;
@@ -11,10 +12,14 @@ public class CharacterMovement : MonoBehaviour
 
 	private Rigidbody2D rb2d;
 
+
+
+
 	// Use this for initialization
 	void Start ()
 	{
 		rb2d = GetComponent<Rigidbody2D> ();
+		genMap = GameObject.Find ("_SCRIPTS").GetComponent<GenerateMap> ();
 	}
 	
 	// Update is called once per frame
@@ -33,27 +38,40 @@ public class CharacterMovement : MonoBehaviour
 			rb2d.AddForce (Vector2.up * moveSpeed);
 			rb2d.MoveRotation (angle: 0);
 
-
 		}
 		if (Input.GetKey ("down") || Input.GetKey ("s")) {
 
 			rb2d.AddForce (Vector2.down * moveSpeed);
 			rb2d.MoveRotation (angle: 180);
 
-
 		}
 		if (Input.GetKey ("right") || Input.GetKey ("d")) {
 
 			rb2d.AddForce (Vector2.right * moveSpeed);
 			rb2d.MoveRotation (angle: 270);
-	
 
 		}
 		if (Input.GetKey ("left") || Input.GetKey ("a")) {
 
 			rb2d.AddForce (Vector2.left * moveSpeed);
 			rb2d.MoveRotation (angle: 90);
+
+		}
+	}
+
+	void OnTriggerEnter2D (Collider2D col)
+	{
 		
+		if (!col.gameObject.GetComponent<TileScript> ().isTriggered) {
+			print ("entered");
+
+			int ran;
+			ran = Random.Range (0, genMap.AllTilesInfo.Count);
+
+			GenerateMap.TileInfo newtile = new GenerateMap.TileInfo ();
+			newtile = genMap.AllTilesInfo [ran];
+			genMap.GenerateOneTileInfo (col.gameObject, newtile.type, newtile.value, newtile.tilename, newtile.tileSprite, true);
+			genMap.AllTilesInfo.Remove (genMap.AllTilesInfo [ran]);
 
 		}
 	}

@@ -2,8 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+
 public class GenerateMap : MonoBehaviour
 {
+
 
 	public enum tiletype
 	{
@@ -27,7 +30,6 @@ public class GenerateMap : MonoBehaviour
 			tilename = nam;
 			tileSprite = tiS;
 		}
-
 	}
 
 
@@ -35,6 +37,7 @@ public class GenerateMap : MonoBehaviour
 	private GameObject tile;
 
 	// All Sprites
+	private SpriteRenderer sprRend;
 	private Sprite grassSprite;
 	private Sprite sandSprite;
 	private Sprite stoneSprite;
@@ -43,7 +46,8 @@ public class GenerateMap : MonoBehaviour
 	// All ints
 
 	// All lists
-	private List<TileInfo> AllTilesInfo;
+	public List<TileInfo> AllTilesInfo;
+	public List<TileInfo> DiscoveredTiles;
 
 
 
@@ -58,7 +62,9 @@ public class GenerateMap : MonoBehaviour
 		print (grassSprite.name);
 
 		GenerateTileList ();
-		GenerateAllTiles ();
+		GenerateFirstTiles (tiletype.grass, 1, "Grassy Tile", grassSprite, 0, 0, true);
+		GenerateAllBlankTiles ();
+		//GenerateAllTiles ();
 	}
 	
 	// Update is called once per frame
@@ -71,6 +77,7 @@ public class GenerateMap : MonoBehaviour
 	{
 		
 		AllTilesInfo = new List<TileInfo> ();
+		DiscoveredTiles = new List<TileInfo> ();
 
 		for (int i = 0; i < 4000; i++) {
 
@@ -94,33 +101,60 @@ public class GenerateMap : MonoBehaviour
 		print (AllTilesInfo.Count);
 	}
 
-	void GenerateOneTile (tiletype typ, int val, string nam, Sprite spr, int x, int y)
+	public void GenerateFirstTiles (tiletype typ, int val, string nam, Sprite spr, int x, int y, bool trig)
 	{
 		GameObject go = Instantiate (tile, Vector3.zero, Quaternion.identity) as GameObject;
 		go.GetComponent<TileScript> ()._tiletype = typ;
 		go.GetComponent<TileScript> ().value = val;
 		go.GetComponent<TileScript> ().tilename = nam;
 		go.GetComponent<SpriteRenderer> ().sprite = spr;
+		go.GetComponent<SpriteRenderer> ().color = Color.white;
 		go.transform.position = new Vector2 (x, y);
+		go.GetComponent<TileScript> ().isTriggered = trig;
+
+
 	}
 
-	void GenerateAllTiles ()
+	void GenerateAllBlankTiles ()
 	{
 		int tilessquared = (int)Mathf.Sqrt (AllTilesInfo.Count);
 		print (tilessquared);
 
-		TileInfo tileinfo = new TileInfo ();
+		for (int x = -(tilessquared / 2); x < (tilessquared / 2); x++) {
+			for (int y = -(tilessquared / 2); y < (tilessquared / 2); y++) {
 
-
-		for (int x = 0; x < tilessquared; x++) {
-			for (int y = 0; y < tilessquared; y++) {
-
-				int ran = Random.Range (0, AllTilesInfo.Count);
-				tileinfo = AllTilesInfo [ran];
-				GenerateOneTile (tileinfo.type, tileinfo.value, tileinfo.tilename, tileinfo.tileSprite, x * 5, y * 5);
-				AllTilesInfo.Remove (AllTilesInfo [ran]);
-
+				if (x == 0 && y == 0) {
+					print ("First tile is here");
+				} else {
+					GameObject go = Instantiate (tile, new Vector2 (x * 10, y * 10), Quaternion.identity) as GameObject;
+					go.GetComponent<TileScript> ().isTriggered = false;
+				}
 			}
 		}
 	}
+
+	public void GenerateOneTileInfo (GameObject go, tiletype typ, int val, string nam, Sprite spr, bool trig)
+	{
+		go.GetComponent<TileScript> ()._tiletype = typ;
+		go.GetComponent<TileScript> ().value = val;
+		go.GetComponent<TileScript> ().tilename = nam;
+		go.GetComponent<SpriteRenderer> ().sprite = spr;
+		go.GetComponent<SpriteRenderer> ().color = Color.white;
+		go.GetComponent<TileScript> ().isTriggered = trig;
+	}
+
+	/*void GenerateAllTiles ()
+	{
+
+
+		TileInfo tileinfo = new TileInfo ();
+
+		int ran = Random.Range (0, AllTilesInfo.Count);
+		tileinfo = AllTilesInfo [ran];
+		GenerateFirstTiles (tileinfo.type, tileinfo.value, tileinfo.tilename, tileinfo.tileSprite, x * 10, y * 10, false);
+		AllTilesInfo.Remove (AllTilesInfo [ran]);
+
+			
+
+	}*/
 }
