@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\_Scripts\CharacterMovement.cs" />
      <Compile Include="Assets\_Scripts\GenerateMap.cs" />
+     <Compile Include="Assets\_Scripts\TileScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
