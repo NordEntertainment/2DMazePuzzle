@@ -61,18 +61,38 @@ public class CharacterMovement : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D col)
 	{
-		
+		SpawnTileAndTileInfo (col);
+		RollForTileEvent ();
+	
+	}
+
+	void SpawnTileAndTileInfo (Collider2D col)
+	{
 		if (!col.gameObject.GetComponent<TileScript> ().isTriggered) {
 			print ("entered");
 
 			int ran;
-			ran = Random.Range (0, genMap.AllTilesInfo.Count);
+			ran = Random.Range (0, genMap.L_AllTilesInfo.Count);
 
 			GenerateMap.TileInfo newtile = new GenerateMap.TileInfo ();
-			newtile = genMap.AllTilesInfo [ran];
+			newtile = genMap.L_AllTilesInfo [ran];
 			genMap.GenerateOneTileInfo (col.gameObject, newtile.type, newtile.value, newtile.tilename, newtile.tileSprite, true);
-			genMap.AllTilesInfo.Remove (genMap.AllTilesInfo [ran]);
+			genMap.L_AllTilesInfo.Remove (genMap.L_AllTilesInfo [ran]);
 
+		}
+	}
+
+	void RollForTileEvent ()
+	{
+		int ran = Random.Range (1, 3);
+
+		if (ran == 1) {
+			print ("Nothing happend.");
+		}
+		if (ran == 2) {
+			int rand = Random.Range (0, genMap.L_AllEventInfo.Count);
+			print ("This happend: " + genMap.L_AllEventInfo [rand].eventname + " - "
+			+ genMap.L_AllEventInfo [rand].infoString);
 		}
 	}
 }
