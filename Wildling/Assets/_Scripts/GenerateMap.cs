@@ -83,9 +83,9 @@ public class GenerateMap : MonoBehaviour
 	void Start ()
 	{
 		tile = Resources.Load ("Prefabs/Tile") as GameObject;
-		grassSprite = Resources.Load<Sprite> ("Materials/Sprites/Grass");
-		sandSprite = Resources.Load<Sprite> ("Materials/Sprites/Sand");
-		stoneSprite = Resources.Load<Sprite> ("Materials/Sprites/Stone");
+		grassSprite = Resources.Load<Sprite> ("Materials/Sprites/Grass_250x");
+		sandSprite = Resources.Load<Sprite> ("Materials/Sprites/Sand_250x");
+		stoneSprite = Resources.Load<Sprite> ("Materials/Sprites/Stone_250x");
 
 		print (grassSprite.name);
 

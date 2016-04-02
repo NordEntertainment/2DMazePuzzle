@@ -1,15 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\GenerateMap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_Scripts/TileScript.cs">
     <Files>
-<<<<<<< Updated upstream
-      <File FileName="Assets\_Scripts\GenerateMap.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\TileScript.cs" Line="1" Column="1" />
-=======
-      <File FileName="Assets/_Scripts/GenerateMap.cs" Line="171" Column="43" />
+      <File FileName="Assets/_Scripts/GenerateMap.cs" Line="93" Column="76" />
       <File FileName="Assets/_Scripts/TileScript.cs" Line="9" Column="25" />
-      <File FileName="Assets/_Scripts/CharacterMovement.cs" Line="96" Column="4" />
->>>>>>> Stashed changes
+      <File FileName="Assets/_Scripts/CharacterMovement.cs" Line="94" Column="1" />
+      <File FileName="Assets/AutoCamSize.cs" Line="13" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

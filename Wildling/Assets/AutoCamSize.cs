@@ -11,6 +11,7 @@ public class AutoCamSize : MonoBehaviour
 	void Start ()
 	{
 		autoCamWidth ();
+		autoCamHeight ();
 	}
 	
 	// Update is called once per frame
@@ -28,10 +29,24 @@ public class AutoCamSize : MonoBehaviour
 		spr.sprite.texture.filterMode = FilterMode.Point;
 
 		double width = spr.sprite.bounds.size.x;
-		print ("width = " + width);
+		//print ("width = " + width);
 		double worldScreenHeight = Camera.main.orthographicSize * 2;
 		double worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 
 		transform.localScale = new Vector2 (1, 1) * (float)(worldScreenWidth / width);
+	}
+
+	void autoCamHeight ()
+	{
+		SpriteRenderer spr = (SpriteRenderer)GetComponent ("Renderer");
+		if (spr == null)
+			return;
+
+		spr.sprite.texture.filterMode = FilterMode.Point;
+
+		double height = spr.sprite.bounds.size.y;
+		double worldScreenHeight = Camera.main.orthographicSize * 2;
+
+		transform.localScale = new Vector2 (1, 1) * (float)(worldScreenHeight / height);
 	}
 }
