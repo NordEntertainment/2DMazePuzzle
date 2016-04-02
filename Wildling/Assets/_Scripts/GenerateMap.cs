@@ -102,19 +102,19 @@ public class GenerateMap : MonoBehaviour
 		L_AllTilesInfo = new List<TileInfo> ();
 		L_DiscoveredTiles = new List<TileInfo> ();
 
-		for (int i = 0; i < 4000; i++) {
+		for (int i = 0; i < 40; i++) {
 
 			TileInfo newTile = new TileInfo ();
 			newTile.GenerateTileInfo (tiletype.grass, Random.Range (1, 11), "Grassy Tile", grassSprite);
 			L_AllTilesInfo.Add (newTile);
 		}
-		for (int i = 0; i < 3000; i++) {
+		for (int i = 0; i < 30; i++) {
 
 			TileInfo newTile = new TileInfo ();
 			newTile.GenerateTileInfo (tiletype.sand, Random.Range (1, 11), "Sandy Tile", sandSprite);
 			L_AllTilesInfo.Add (newTile);
 		}
-		for (int i = 0; i < 3000; i++) {
+		for (int i = 0; i < 30; i++) {
 
 			TileInfo newTile = new TileInfo ();
 			newTile.GenerateTileInfo (tiletype.stone, Random.Range (1, 11), "Stony Tile", stoneSprite);
@@ -209,7 +209,7 @@ public class GenerateMap : MonoBehaviour
 		for (int i = 0; i < 10; i++) {
 			EventInfo newEvent = new EventInfo ();
 			int ran = Random.Range (0, _resources.Length);
-			newEvent.GenerateEventInfo (eventtype.resources, ran, "You found some resources: " + ran + _resources [ran], "" + _resources [ran]);
+			newEvent.GenerateEventInfo (eventtype.resources, ran, "You found some resources: " + ran + _resources [ran], " " + _resources [ran]);
 			L_AllEventInfo.Add (newEvent);
 		}
 		for (int i = 0; i < 10; i++) {
