@@ -11,17 +11,21 @@ public class HomeTile : MonoBehaviour
 
 	// All Sprites
 	private SpriteRenderer sprRend;
-	private Sprite grassSprite;
-	private Sprite sandSprite;
-	private Sprite stoneSprite;
+	private Sprite homeTileSprite;
+
 
 	// Use this for initialization
 	void Start ()
 	{
 		
-		hometile = Resources.Load ("Prefabs/Tile") as GameObject;
+		hometile = Resources.Load ("Prefabs/HomeTile") as GameObject;
+		homeTileSprite = Resources.Load<Sprite> ("Materials/Sprites/Backgrounds/Town");
+
+
 
 		GameObject go = Instantiate (hometile, new Vector2 (0, 0), Quaternion.identity) as GameObject;
+
+
 
 	}
 	
